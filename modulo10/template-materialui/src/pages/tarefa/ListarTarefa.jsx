@@ -14,19 +14,20 @@ import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import Modal from "@mui/material/Modal";
+import Swal from "sweetalert2";
 
 import CriarTarefa from "./CriarTarefa";
 import EditarTarefa from "./EditarTarefa";
 
 //A função abaixo é usada para criar o array contendo os dados iniciais da listagem de tarefas.
 function createData(
-  idTarefa: number,
-  tituloTarefa: string,
-  descricaoTarefa: string,
-  inicioTarefa: string,
-  fimTarefa: string,
-  statusTarefa: string,
-  recursoTarefa: string
+  idTarefa,
+  tituloTarefa,
+  descricaoTarefa,
+  inicioTarefa,
+  fimTarefa,
+  statusTarefa,
+  recursoTarefa
 ) {
   return {
     idTarefa,
@@ -106,7 +107,6 @@ const ListarTarefa = () => {
   const [idTarefaSelecionada, setIdTarefaSelecionada] = useState([]);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const handleOpenEditar = () => setOpenEditar(true);
   const handleCloseEditar = () => setOpenEditar(false);
 
   //O array definido acima é setado como conteúdo do state Tarefas na renderização inicial do componente.
@@ -191,7 +191,13 @@ const ListarTarefa = () => {
                       <Button
                         variant="contained"
                         color="error"
-                        onClick={() => handleDeletar(row.idTarefa)}
+                        onClick={() =>
+                          handleDeletar(row.idTarefa) &
+                          Swal.fire({
+                            title: "Tarefa Deletada",
+                            icon: "success",
+                          })
+                        }
                       >
                         <DeleteIcon fontSize="small" />
                       </Button>

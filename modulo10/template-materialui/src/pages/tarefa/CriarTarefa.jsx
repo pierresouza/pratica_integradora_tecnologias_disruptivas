@@ -6,7 +6,7 @@ import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
-// import CardActions from "@mui/material/CardActions";
+import Swal from "sweetalert2";
 import Button from "@mui/material/Button";
 
 //Declaração do componente CriarTarefa, recebendo como props, do Componente ListarTarefa, os states handClose, tarefas e setTarefas
@@ -54,6 +54,7 @@ const CriarTarefa = ({ handleClose, tarefas, setTarefas }) => {
     ]);
     //console.log(`Tarefas: ` + JSON.stringify(tarefas));
     handleClose();
+    Swal.fire({ title: "Tarefa Criada", icon: "success" });
   };
 
   return (
@@ -179,7 +180,7 @@ const CriarTarefa = ({ handleClose, tarefas, setTarefas }) => {
                 </Select>
               </FormControl>
             </Grid>
-            <Grid container spacing={2} pl={2} mt={2}>
+            <Grid container spacing={2} pl={2} mt={2} gap={2}>
               <Grid item xs={1}>
                 <Button size="small" variant="contained" onClick={handleSalvar}>
                   Salvar
